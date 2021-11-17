@@ -1,0 +1,34 @@
+# oop1_ex3
+
+Classes:
+
+ Poly
+	Description: represent polynom (over Q)
+
+	Members: 
+		- poli list
+
+	Member functions: 
+		- deg (get degree)
+		   
+
+Rational 
+	Description: represent rational number by numerator denominator
+
+	Members: 
+		- numerator
+		- denominator
+
+	Member functions: 
+		- deg (get degree)
+		-  
+
+List:
+	- list coeffec 
+
+
+
+
+Structs:
+	
+Coeffec
