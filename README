@@ -3,17 +3,22 @@
 Classes:
 
  Poly
-	Description: represent polynom (over Q)
+	Description: represent polynom (over Q), responsible for
+	mathematical behaviours (not memory management)
 
 	Members: 
 		- poli list
 
 	Member functions: 
-		- deg (get degree)
+		- deg (get degree of index)
+		- constructor
+		- deconstrucor
+		- copy constructor
+		- all operation functions
 		   
 
 Rational 
-	Description: represent rational number by numerator denominator
+	Description: represent rational number by numerator denominator. Responsible for 
 
 	Members: 
 		- numerator
@@ -24,11 +29,21 @@ Rational
 		-  
 
 List:
-	- list coeffec 
+	Description: list of coeffic structs, responsible for
+	memory and data structure management
 
+	Members:
+		struct Coeffic *
+
+	Member Functions:
+		-
 
 
 
 Structs:
 	
-Coeffec
+Coeffic
+	- int degree
+	- Rational coeffic
+	- next Coeffic
+
