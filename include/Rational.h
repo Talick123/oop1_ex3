@@ -1,5 +1,7 @@
 #pragma once
 
+#include <numeric>
+#include <ostream>
 
 const int DEFAULT_NUMER = 0;
 const int DEFAULT_DENOMIN = 1;
@@ -11,25 +13,35 @@ class Rational
 {
 public:
 	//constructors
-	Rational(int numer, int denomin) : m_numerator(DEFAULT_NUMER), m_denominator(DEFAULT_DENOMIN) {};
-	
-	Rational operator+(const Rational& other);
-	Rational operator-(const Rational& other);
-	Rational operator*(const Rational& other);
-	Rational operator/(const Rational& other);
+	Rational(int numer, int denomin);
 
-	
-	//distructors
+	int getNumer()const;
+	int getDenomin()const;
+
+	Rational operator+=(const Rational& other);
+	Rational operator-=(const Rational& other);
+	Rational operator*=(const Rational& other);
+	Rational operator/=(const Rational& other);
+	bool operator==(const Rational& other);
+	bool operator<(const Rational& other);
+
+
+	//destructors
 
 
 private:
-	void simplify_rational(int numer, int denomin);
+	void simplify();
+
 
 	int m_numerator; //signed
 	int m_denominator;
-}
+};
 
 //Operators:
-Rational operator+=(const Rational& left, const Rational& right);
-Rational operator-=(const Rational& left, const Rational& right);
 
+Rational operator+(const Rational& left, const Rational& right);
+Rational operator-(const Rational& left, const Rational& right);
+bool operator!=(const Rational& left, const Rational& right);
+bool operator>(const Rational& left, const Rational& right);
+bool operator<=(const Rational& left, const Rational& right);
+bool operator>=(const Rational& left, const Rational& right);
