@@ -28,8 +28,8 @@ Rational
 		- deg (get degree)
 		-  
 
-List:
-	Description: list of coeffic structs, responsible for
+TermList:
+	Description: list of Term structs, responsible for
 	memory and data structure management
 
 	Members:
@@ -42,7 +42,7 @@ List:
 
 Structs:
 	
-Coeffic
+Term
 	- int degree
 	- Rational coeffic
 	- next Coeffic
