@@ -1,7 +1,9 @@
 #pragma once
 
 #include <numeric>
-#include <ostream>
+#include <iosfwd>
+#include <iostream>
+
 
 const int DEFAULT_NUMER = 0;
 const int DEFAULT_DENOMIN = 1;
@@ -18,16 +20,17 @@ public:
 	int getNumer()const;
 	int getDenomin()const;
 
-	Rational operator+=(const Rational& other);
-	Rational operator-=(const Rational& other);
-	Rational operator*=(const Rational& other);
-	Rational operator/=(const Rational& other);
-	bool operator==(const Rational& other);
-	bool operator<(const Rational& other);
+	Rational &operator+=(const Rational& other);
+	Rational &operator-=(const Rational& other);
+	Rational &operator*=(const Rational& other);
+	Rational &operator/=(const Rational& other);
+	bool operator==(const Rational& other) const;
+	bool operator<(const Rational& other) const;
+	Rational &operator+();
+	Rational &operator-();
 
 
 	//destructors
-
 
 private:
 	void simplify();
@@ -38,10 +41,16 @@ private:
 };
 
 //Operators:
-
+//add unary operators
+//add printing operators
 Rational operator+(const Rational& left, const Rational& right);
 Rational operator-(const Rational& left, const Rational& right);
+Rational operator*(const Rational& left, const Rational& right);
+Rational operator/(const Rational& left, const Rational& right);
 bool operator!=(const Rational& left, const Rational& right);
 bool operator>(const Rational& left, const Rational& right);
 bool operator<=(const Rational& left, const Rational& right);
 bool operator>=(const Rational& left, const Rational& right);
+std::ostream& operator<<(std::ostream&, const Rational& rtnl);
+
+int getNewDenomin(int old_denomin, int other_denomin);
