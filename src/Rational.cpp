@@ -198,7 +198,7 @@ bool operator>=(const Rational& left, const Rational& right)
 //=============================================================================
 std::ostream& operator<<(std::ostream&, const Rational& rtnl)
 {
-	std::cout << rtnl.getNumer() << '/' << rtnl.getDenomin();
+	return std::cout << rtnl.getNumer() << '/' << rtnl.getDenomin();
 }
 
 //=============================================================================
