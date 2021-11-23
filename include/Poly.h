@@ -13,6 +13,7 @@ public:
 	Poly(Rational r); // P(x) = r
 	Poly(int deg, Rational r); // P(x) = rx^deg
 	Poly(const std::vector <Rational>& poly_vec);
+
 	int deg() const;
 	//distructors	
 
