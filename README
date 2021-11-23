@@ -1,4 +1,15 @@
-# oop1_ex3
+OOP ex3 - Implementation of Polynomials
+
+Written by: Tali Kalev (טלי כלב), ID:208629691
+            Noga Levy (נוגה לוי), ID:315260927
+
+General Description of the Assignment:
+  In this assignment, we were requested to implement classes and functions that
+  allow representation and manipulation of polynomials.
+
+
+
+
 
 Classes:
 
@@ -6,27 +17,27 @@ Classes:
 	Description: represent polynom (over Q), responsible for
 	mathematical behaviours (not memory management)
 
-	Members: 
+	Members:
 		- poli list
 
-	Member functions: 
+	Member functions:
 		- deg (get degree of index)
 		- constructor
 		- deconstrucor
 		- copy constructor
 		- all operation functions
-		   
 
-Rational 
-	Description: represent rational number by numerator denominator. Responsible for 
 
-	Members: 
+Rational
+	Description: represent rational number by numerator denominator. Responsible for
+
+	Members:
 		- numerator
 		- denominator
 
-	Member functions: 
+	Member functions:
 		- deg (get degree)
-		-  
+		-
 
 TermList:
 	Description: list of Term structs, responsible for
@@ -41,9 +52,8 @@ TermList:
 
 
 Structs:
-	
+
 Term
 	- int degree
 	- Rational coeffic
 	- next Coeffic
-
