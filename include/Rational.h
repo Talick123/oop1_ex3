@@ -41,8 +41,6 @@ private:
 };
 
 //Operators:
-//add unary operators
-//add printing operators
 Rational operator+(const Rational& left, const Rational& right);
 Rational operator-(const Rational& left, const Rational& right);
 Rational operator*(const Rational& left, const Rational& right);
