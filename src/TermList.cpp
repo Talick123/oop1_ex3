@@ -15,22 +15,31 @@ TermList::TermList(const std::vector <Rational>& poly_vec) : m_termList(nullptr)
 	m_termList = new_list;
 }
 
+//copy constructor
+TermList::TermList(const TermList& tl)
+{
+	//m_termList = tl.m_termList; //get term list head ?
+	m_termList = tl.getTermListHead(); 
+}
+
 TermList::~TermList()
 {
 	freeList();
 }
 
+
+
 Term* TermList::buildListTerm(const std::vector <Rational>& poly_vec)
 {
-	Term* head = NULL, * last = NULL;
-	int size = poly_vec.size(), 
+	Term* head = NULL;
+	int size = int(poly_vec.size()), 
 		curr = 0;
 	 
 	while (curr < size)
 	{
-		if (poly_vec[curr] == Rational(0,0)) continue;
+		if (poly_vec[curr].getDenomin() == 1 && poly_vec[curr].getNumer() == 0) continue;
 
-		Term* tmp = new_term(poly_vec[curr], curr );
+		Term* tmp = newTerm(poly_vec[curr], curr );
 
 		tmp->_next = head;
 		head = tmp;
@@ -40,9 +49,9 @@ Term* TermList::buildListTerm(const std::vector <Rational>& poly_vec)
 	return head;
 }
 
-Term* TermList::new_term(Rational r, int exponent)
+Term* TermList::newTerm(Rational r, int exponent)
 {
-	Term* term = new (std::nothrow) Term({ 0,Rational(0,0),NULL });
+	Term* term = new (std::nothrow) Term({ 0,Rational(0,1),NULL });
 	if (!term)
 	{
 		std::cerr << "Error in allocation" << std::endl;
@@ -64,4 +73,9 @@ void TermList::freeList()
 		delete head;
 		head = tmp;
 	}
+}
+
+Term* TermList::getTermListHead()const
+{
+	return m_termList; //return head to term list
 }

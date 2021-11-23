@@ -15,17 +15,19 @@ public:
 	//constructors
 	TermList();
 	TermList(const std::vector <Rational>& poly_vec);
-
+	TermList(const TermList& tl); //copy constructor ?
 
 	//destructors
-	~TermList(); //delete list
+	~TermList(); //free list
+
+	Term* getTermListHead()const;
 
 
 private:
 	Term* m_termList;
 
 	Term* buildListTerm(const std::vector <Rational>& poly_vec);
-	Term* new_term(Rational r, int exponent);
+	Term* newTerm(Rational r, int exponent);
 	void freeList();
 
 };
