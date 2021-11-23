@@ -26,6 +26,8 @@ private:
 
 	Term* buildListTerm(const std::vector <Rational>& poly_vec);
 	Term* new_term(Rational r, int exponent);
+	void freeList();
+
 };
 
 //Require Functions for Poly's Use

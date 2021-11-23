@@ -15,6 +15,11 @@ TermList::TermList(const std::vector <Rational>& poly_vec) : m_termList(nullptr)
 	m_termList = new_list;
 }
 
+TermList::~TermList()
+{
+	freeList();
+}
+
 Term* TermList::buildListTerm(const std::vector <Rational>& poly_vec)
 {
 	Term* head = NULL, * last = NULL;
@@ -48,4 +53,15 @@ Term* TermList::new_term(Rational r, int exponent)
 	term->_exponent = exponent;
 	term->_next = NULL;
 	return term;
+}
+
+void TermList::freeList()
+{
+	Term *tmp, *head = m_termList;
+	while (head != NULL)
+	{
+		tmp = head->_next;
+		delete head;
+		head = tmp;
+	}
 }
