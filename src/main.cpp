@@ -20,5 +20,19 @@ int main()
     std::cout << "A and B are " << isEqual << '\n';
 
 	*/
+
+    Rational A(3, 4), B(1, 4);
+
+    std::cout << "A is: " << A << '\n';
+    std::cout << "B is: " << B << '\n';
+    std::cout << "A is: " << (A < B ? "lesser" : "greater") << " than B" << '\n';
+    std::cout << "A+B is: " << A + B << '\n';
+    std::cout << "A-B is: " << A - B << '\n';
+    std::cout << "A*B is: " << A * B << '\n';
+    std::cout << "A/B is: " << A / B << '\n';
+
+    const auto isEqual = (A == B) ? "equal" : "not equal";
+    std::cout << "A and B are " << isEqual << '\n';
+
 	return EXIT_SUCCESS;
 }
