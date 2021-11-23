@@ -3,7 +3,8 @@
 
 Poly::Poly() : m_polynom()
 {
-	init(0, Rational(0, 1));
+	Rational r = Rational(0, 1);
+	init(0, r);
 }
 
 
@@ -25,15 +26,15 @@ Poly::Poly(const std::vector <Rational>& poly_vec) :m_polynom()
 }
 
 
-Poly::init(int deg, Rational r)
+void Poly::init(int deg, Rational r)
 {
-	vector<Term> poly_vec(1);
-	poly_vec[0] = { 1, r, nullptr };
+	std::vector<Rational> poly_vec(deg, Rational(0,1)); 
+	poly_vec[deg] = r;
 	m_polynom = TermList(poly_vec);
 }
 
-
+//TODO: change this 
 int Poly::deg()const
 {
-
+	return 1;
 }
