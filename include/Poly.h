@@ -23,4 +23,5 @@ public:
 private:
 	TermList m_polynom;
 
+	void init(int deg, Rational r);
 };
