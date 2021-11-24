@@ -5,6 +5,7 @@
 #include <vector>
 
 const Rational zero(0, 1);
+enum oprtr { MINUS, PLUS };
 
 class Poly
 {
@@ -19,22 +20,25 @@ public:
 	Rational operator[](int exponent);
 
 	int deg() const;
+	TermList getTermList()const;
+
 	//destructors
 
 
 	//operators
-	Poly operator+=(const Poly& right);
-	Poly operator-=(const Poly& right);
-	Poly operator*=(const Poly& right);
+	Poly operator+=(const Poly& other);
+	Poly operator-=(const Poly& other);
+	Poly operator*=(const Poly& other);
+	bool operator==(const Poly& other) const;
 
 
 
 private:
 	TermList m_polynom;
 
-	TermList getTermList()const;
+	//TermList getTermList()const;
 	std::vector <Rational>& getVectorOfList()const;
-	std::vector <Rational>& mergeVectorsOfLists(std::vector <Rational>& other_vec)const;
+	std::vector <Rational>& mergeVectorsOfLists(std::vector <Rational>& other_vec, int oprtr)const;
 
 	void init(int deg, Rational r);
 };
@@ -44,7 +48,8 @@ private:
 Poly operator+(const Poly& left, const Poly& right);
 Poly operator-(const Poly& left, const Poly& right);
 Poly operator*(const Poly& left, const Poly& right);
-
+bool operator!=(const Poly& left, const Poly& right);
+std::ostream& operator<<(std::ostream&, const Poly& poly);
 
 // Required Operators: +, -, *
 // ==, != checks if degree of Polynomials

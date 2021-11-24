@@ -7,24 +7,28 @@ Poly::Poly() : m_polynom()
 	init(0, r);
 }
 
+//-----------------------------------------------------
 
 Poly::Poly(Rational r) :m_polynom()
 {
 	init(0, r);
 }
 
+//-----------------------------------------------------
 
 Poly::Poly(int deg, Rational r) : m_polynom()
 {
 	init(deg, r);
 }
 
+//-----------------------------------------------------
 
 Poly::Poly(const std::vector <Rational>& poly_vec) :m_polynom()
 {
 	m_polynom = TermList(poly_vec);
 }
 
+//-----------------------------------------------------
 
 void Poly::init(int deg, Rational r)
 {
@@ -33,11 +37,14 @@ void Poly::init(int deg, Rational r)
 	m_polynom = TermList(poly_vec);
 }
 
+//-----------------------------------------------------
 
 int Poly::deg()const
 {
 	return m_polynom.getTermListHead()->_exponent;
 }
+
+//-----------------------------------------------------
 
 //function receives exponent and returns coefficent of the term in the list with that exponent
 Rational Poly::operator[](int exponent)
@@ -57,17 +64,22 @@ Rational Poly::operator[](int exponent)
 }
 
 
+//-----------------------------------------------------
+
 TermList Poly::getTermList()const
 {
 	return  m_polynom;
 }
+
+//-----------------------------------------------------
 
 std::vector <Rational>& Poly::getVectorOfList()const
 {
 	return m_polynom.getVector();
 }
 
-/////////////////////////
+//========================= O P E R A T O R ====================
+
 Poly Poly::operator+=(const Poly& other)
 {
 	//get vector of current poly and the vector of other and
@@ -76,25 +88,42 @@ Poly Poly::operator+=(const Poly& other)
 	/*TermList new_tl = TermList(other.getVectorOfList());*/
 
 	std::vector <Rational>  new_vec(other.deg(), Rational(0, 1));
-	new_vec = mergeVectorsOfLists(other.getVectorOfList());
+	new_vec = mergeVectorsOfLists(other.getVectorOfList(), PLUS);
 	Poly new_poly = Poly(new_vec);
 	m_polynom = new_poly.getTermList();
 
 	return *this;
 }
 
+//-----------------------------------------------------
+
 Poly Poly::operator-=(const Poly& other)
 {
+	std::vector <Rational>  new_vec(other.deg(), Rational(0, 1));
+	new_vec = mergeVectorsOfLists(other.getVectorOfList(), MINUS);
+	Poly new_poly = Poly(new_vec);
+	m_polynom = new_poly.getTermList();
+
 	return *this;
 }
+
+// -----------------------------------------------
 
 Poly Poly::operator*=(const Poly& other)
 {
-	return *this;
+	return *this + other;
 }
 
+// -----------------------------------------------
 
-std::vector <Rational>& Poly::mergeVectorsOfLists(std::vector <Rational>& other_vec)const
+bool Poly::operator==(const Poly& other) const
+{
+	return (deg() == other.deg());
+}
+
+// -----------------------------------------------
+
+std::vector <Rational>& Poly::mergeVectorsOfLists(std::vector <Rational>& other_vec, int oprtr)const
 {
 	//vector size of the biggest one
 	int merged_vec_size =( (deg() > other_vec.size()) ? int(deg()) : int(other_vec.size()));
@@ -117,27 +146,63 @@ std::vector <Rational>& Poly::mergeVectorsOfLists(std::vector <Rational>& other_
 			merged_vec[i] = current_vec[i];
 			break;
 		}
-		merged_vec[i] = current_vec[i] + other_vec[i];
+		if (current_vec[i] == Rational(0, 1) && other_vec[i] == Rational(0, 1)) continue;
+		merged_vec[i] = (oprtr == PLUS) ? (current_vec[i] + other_vec[i]) : (current_vec[i] + other_vec[i]);
 	}
 	return merged_vec;
 }
 
+//-----------------------------------------------------
+//TODO: check later
+Poly operator+(const Poly& left, const Poly& right)
+{
+	Poly new_poly(left);
+	return new_poly += right;
+}
 
+//-----------------------------------------------------
 
-//if (i >= current_vec.size())
-//{
-//	//push the rest from other_vec
-//	for (i; i < merged_vec_size; i++)
-//	{
-//		merged_vec[i] =  other_vec[i];
-//	}
-//	break;
-//}
-//else if (i >= other_vec.size())
-//{
-//	//push the rest from current_vec
-//	for (i; i < merged_vec_size; i++)
-//	{
-//		merged_vec[i] = current_vec[i];
-//	}
-//}
+Poly operator-(const Poly& left, const Poly& right)
+{
+	Poly new_poly(left);
+	return new_poly -= right;
+}
+
+//-----------------------------------------------------
+
+Poly operator*(const Poly& left, const Poly& right)
+{
+	Poly new_poly(left);
+	return new_poly *= right;
+}
+
+//-----------------------------------------------------
+
+bool operator!=(const Poly & left, const Poly & right)
+{
+	return !(left == right);
+}
+
+//-----------------------------------------------------
+
+std::ostream& operator<<(std::ostream& ostream, const Poly& right)
+{
+	Term* head = right.getTermList().getTermListHead();
+	
+	if (!head || (head->_coeffic == Rational(0, 1) && head->_exponent == 0)) 
+		return std::cout << "0" << std::endl;
+	
+	head->_coeffic < Rational(0, 1) ? "-" : "";
+	while (head)
+	{
+		std::cout << head->_coeffic << "*X";
+		head->_exponent != 0 ? std::cout << "^" : std::cout << "";
+		std::cout << head->_exponent;
+
+		head = head->_next;
+
+		head ? (head->_coeffic < Rational(0, 1) ? std::cout << "-" : std::cout << "+") : std::cout << std::endl;
+	}
+	
+	return ostream;
+}
