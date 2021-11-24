@@ -77,7 +77,7 @@ Term* TermList::getTermListHead()const
 std::vector <Rational>& TermList::getVector()const
 {
 	int index = m_termList->_exponent; //also size of vec
-	std::vector <Rational> list_vec(index, Rational(0, 1));
+	std::vector <Rational> list_vec(index + 1, Rational(0, 1));
 	Term* head = m_termList;
 	while (head)
 	{

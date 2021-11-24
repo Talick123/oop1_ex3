@@ -32,7 +32,7 @@ Poly::Poly(const std::vector <Rational>& poly_vec) :m_polynom()
 
 void Poly::init(int deg, Rational r)
 {
-	std::vector<Rational> poly_vec(deg, Rational(0, 1));
+	std::vector<Rational> poly_vec(deg + 1, Rational(0, 1));
 	poly_vec[deg] = r;
 	m_polynom = TermList(poly_vec);
 }
@@ -87,7 +87,7 @@ Poly Poly::operator+=(const Poly& other)
 
 	/*TermList new_tl = TermList(other.getVectorOfList());*/
 
-	std::vector <Rational>  new_vec(other.deg(), Rational(0, 1));
+	std::vector <Rational>  new_vec((other.deg() + 1), Rational(0, 1));
 	new_vec = mergeVectorsOfLists(other.getVectorOfList(), PLUS);
 	Poly new_poly = Poly(new_vec);
 	m_polynom = new_poly.getTermList();
@@ -99,7 +99,7 @@ Poly Poly::operator+=(const Poly& other)
 
 Poly Poly::operator-=(const Poly& other)
 {
-	std::vector <Rational>  new_vec(other.deg(), Rational(0, 1));
+	std::vector <Rational>  new_vec((other.deg() + 1), Rational(0, 1));
 	new_vec = mergeVectorsOfLists(other.getVectorOfList(), MINUS);
 	Poly new_poly = Poly(new_vec);
 	m_polynom = new_poly.getTermList();
@@ -111,6 +111,10 @@ Poly Poly::operator-=(const Poly& other)
 
 Poly Poly::operator*=(const Poly& other)
 {
+	std::vector <Rational>  new_vec(other.deg() + 1, Rational(0, 1));
+	new_vec = multiply(other.getVectorOfList());
+	Poly new_poly = Poly(new_vec);
+	m_polynom = new_poly.getTermList();
 	return *this + other;
 }
 
@@ -121,14 +125,41 @@ bool Poly::operator==(const Poly& other) const
 	return (deg() == other.deg());
 }
 
+// ----------------------------------------------
+
+std::vector <Rational> Poly::multiply(const std::vector <Rational> other)
+{
+	int l_size = (int)other.size(), r_size = int(getVectorOfList().size());
+	std::vector <Rational> new_vec((l_size + r_size) - 1);
+	std::vector <Rational> curr_vec(r_size + 1);
+	curr_vec = getVectorOfList();
+
+	// Initialize the product polynomial
+	for (int i = 0; i < l_size + r_size - 1; i++)
+		new_vec[i] = Rational();
+
+	// Multiply two polynomials term by term
+
+	// Take ever term of first polynomial
+	for (int i = 0; i < l_size; i++)
+	{
+		// Multiply the current term of first polynomial
+		// with every term of second polynomial.
+		for (int j = 0; j < r_size; j++)
+			new_vec[(i + j)] += curr_vec[i] * other[j];
+	}
+
+	return new_vec;
+}
+
 // -----------------------------------------------
 
 std::vector <Rational>& Poly::mergeVectorsOfLists(std::vector <Rational>& other_vec, int oprtr)const
 {
 	//vector size of the biggest one
 	int merged_vec_size =( (deg() > other_vec.size()) ? int(deg()) : int(other_vec.size()));
-	std::vector <Rational> merged_vec(merged_vec_size, Rational(0,1));
-	std::vector <Rational> current_vec(deg(), Rational(0,1));
+	std::vector <Rational> merged_vec(merged_vec_size + 1, Rational(0,1));
+	std::vector <Rational> current_vec(deg() + 1, Rational(0,1));
 
 	current_vec = getVectorOfList();
 
@@ -192,7 +223,7 @@ std::ostream& operator<<(std::ostream& ostream, const Poly& right)
 	if (!head || (head->_coeffic == Rational(0, 1) && head->_exponent == 0))
 		return std::cout << "0" << std::endl;
 
-	head->_coeffic < Rational(0, 1) ? "-" : "";
+	//head->_coeffic < Rational(0, 1) ? "-" : "";
 	while (head)
 	{
 		std::cout << head->_coeffic << "*X";
@@ -201,7 +232,7 @@ std::ostream& operator<<(std::ostream& ostream, const Poly& right)
 
 		head = head->_next;
 
-		head ? (head->_coeffic < Rational(0, 1) ? std::cout << "-" : std::cout << "+") : std::cout << std::endl;
+		head ? (head->_coeffic < Rational(0, 1) ? std::cout << "" : std::cout << "+") : std::cout << std::endl;
 	}
 
 	return ostream;
@@ -232,3 +263,6 @@ Rational Poly::operator()(Rational input)const
 
 	return final;
 }
+
+
+

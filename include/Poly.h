@@ -41,6 +41,7 @@ private:
 	//TermList getTermList()const;
 	std::vector <Rational>& getVectorOfList()const;
 	std::vector <Rational>& mergeVectorsOfLists(std::vector <Rational>& other_vec, int oprtr)const;
+	std::vector <Rational> multiply(const std::vector <Rational> other);
 
 	void init(int deg, Rational r);
 };
