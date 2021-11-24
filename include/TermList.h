@@ -22,6 +22,8 @@ public:
 
 	Term* getTermListHead()const;
 
+	Term* operator[](int exponent)const;
+
 
 private:
 	Term* m_termList;

@@ -33,8 +33,25 @@ void Poly::init(int deg, Rational r)
 	m_polynom = TermList(poly_vec);
 }
 
-//TODO: change this 
+
 int Poly::deg()const
 {
-	return 1;
+	return m_polynom.getTermListHead()->_exponent;
+}
+
+//function receives exponent and returns coefficent of the term in the list with that exponent
+Rational Poly::operator[](int exponent)
+{
+	if (exponent < 0 || exponent > deg()) //checks that exponent received is valid
+	{
+		std::cout << "Error! Index " << exponent << " out of range.";
+		return zero;
+	}
+
+	auto temp(m_polynom); //defining iterator using copy constructor
+	
+	if (temp[exponent] == NULL) //if not found in list
+		return zero;
+
+	return temp[exponent]->_coeffic;
 }

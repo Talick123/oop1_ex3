@@ -16,6 +16,7 @@ class Rational
 public:
 	//constructors
 	Rational(int numer, int denomin);
+	Rational(const Rational& copy); //copy constructor
 
 	int getNumer()const;
 	int getDenomin()const;

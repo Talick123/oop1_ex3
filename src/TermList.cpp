@@ -79,3 +79,19 @@ Term* TermList::getTermListHead()const
 {
 	return m_termList; //return head to term list
 }
+
+//function receives exponent and returns pointer to term in list with that exponent
+Term* TermList::operator[](int exponent) const
+{
+	Term* temp = m_termList; //iterator
+
+	while (temp != NULL)
+	{
+		if (temp->_exponent == exponent) //if exponent found
+			return temp;
+		else
+			temp = temp->_next;
+	}
+
+	return temp;
+}
