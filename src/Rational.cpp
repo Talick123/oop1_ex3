@@ -17,6 +17,15 @@ Rational::Rational(int numer, int denomin) : m_numerator(DEFAULT_NUMER), m_denom
 
 //=============================================================================
 
+//Copy Constructor
+Rational::Rational(const Rational& copy) 
+	:m_numerator(copy.getNumer()), m_denominator(copy.getDenomin())
+{}
+
+
+
+//=============================================================================
+
 //Function simplifies fraction
 void Rational::simplify()
 {
@@ -111,16 +120,11 @@ bool Rational::operator==(const Rational& other) const
 
 //=============================================================================
 
-//should i turn into same denominator and compare numerators? might be more accurate??
 bool Rational::operator<(const Rational& other) const
 {
-	double val1, val2;
-	val1 = (double)m_numerator / m_denominator;
-	val2 = (double)other.getNumer() / other.getDenomin();
-	
-	if (std::abs(val1 - val2) < 0.5)
-		return true;
-	return false;
+	int new_denomin = getNewDenomin(m_denominator, other.getDenomin());
+	int temp_numer = m_numerator * (new_denomin / m_denominator);
+	return (temp_numer <  (other.getNumer() * (new_denomin / other.getDenomin())));
 }
 
 //=============================================================================
@@ -139,7 +143,7 @@ Rational& Rational::operator-()
 
 Rational operator+(const Rational& left, const Rational& right)
 {
-	Rational newRat(left.getNumer(), left.getDenomin());
+	Rational newRat(left);
 	return newRat += right;
 }
 
@@ -147,7 +151,7 @@ Rational operator+(const Rational& left, const Rational& right)
 
 Rational operator-(const Rational& left, const Rational& right)
 {
-	Rational newRat(left.getNumer(), left.getDenomin());
+	Rational newRat(left);
 	return newRat -= right;
 }
 
@@ -155,7 +159,7 @@ Rational operator-(const Rational& left, const Rational& right)
 
 Rational operator*(const Rational& left, const Rational& right)
 {
-	Rational newRat(left.getNumer(), left.getDenomin());
+	Rational newRat(left);
 	return newRat *= right;
 }
 
@@ -163,7 +167,7 @@ Rational operator*(const Rational& left, const Rational& right)
 
 Rational operator/(const Rational& left, const Rational& right)
 {
-	Rational newRat(left.getNumer(), left.getDenomin());
+	Rational newRat(left);
 	return newRat /= right;
 }
 

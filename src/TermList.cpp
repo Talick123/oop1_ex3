@@ -7,7 +7,7 @@ TermList::TermList() : m_termList(nullptr) { }
 TermList::TermList(const std::vector <Rational>& poly_vec) : m_termList(nullptr)
 {
 	struct Term *new_list = nullptr;
-	
+
 	new_list = buildListTerm(poly_vec);
 	m_termList = new_list;
 }
@@ -16,7 +16,7 @@ TermList::TermList(const std::vector <Rational>& poly_vec) : m_termList(nullptr)
 TermList::TermList(const TermList& tl)
 {
 	//m_termList = tl.m_termList; //get term list head ?
-	m_termList = tl.getTermListHead(); 
+	m_termList = tl.getTermListHead();
 }
 
 TermList::~TermList()
@@ -27,9 +27,9 @@ TermList::~TermList()
 Term* TermList::buildListTerm(const std::vector <Rational>& poly_vec)
 {
 	Term* head = NULL;
-	int size = int(poly_vec.size()), 
+	int size = int(poly_vec.size()),
 		curr = 0;
-	 
+
 	while (curr < size)
 	{
 		if (poly_vec[curr].getDenomin() == 1 && poly_vec[curr].getNumer() == 0) continue;
@@ -74,7 +74,6 @@ Term* TermList::getTermListHead()const
 	return m_termList; //return head to term list
 }
 
-
 std::vector <Rational>& TermList::getVector()const
 {
 	int index = m_termList->_exponent; //also size of vec
@@ -87,4 +86,20 @@ std::vector <Rational>& TermList::getVector()const
 		index--;
 	}
 	return list_vec;
+}
+
+//function receives exponent and returns pointer to term in list with that exponent
+Term* TermList::operator[](int exponent) const
+{
+	Term* temp = m_termList; //iterator
+
+	while (temp != NULL)
+	{
+		if (temp->_exponent == exponent) //if exponent found
+			return temp;
+		else
+			temp = temp->_next;
+	}
+
+	return temp;
 }

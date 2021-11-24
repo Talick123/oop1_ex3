@@ -24,6 +24,9 @@ public:
 
 	std::vector <Rational>& getVector()const;
 
+	Term* operator[](int exponent)const;
+
+
 private:
 	Term* m_termList;
 

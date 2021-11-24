@@ -33,10 +33,27 @@ void Poly::init(int deg, Rational r)
 	m_polynom = TermList(poly_vec);
 }
 
-//TODO: change this 
+
 int Poly::deg()const
 {
-	return 1;
+	return m_polynom.getTermListHead()->_exponent;
+}
+
+//function receives exponent and returns coefficent of the term in the list with that exponent
+Rational Poly::operator[](int exponent)
+{
+	if (exponent < 0 || exponent > deg()) //checks that exponent received is valid
+	{
+		std::cout << "Error! Index " << exponent << " out of range.";
+		return zero;
+	}
+
+	auto temp(m_polynom); //defining iterator using copy constructor
+
+	if (temp[exponent] == NULL) //if not found in list
+		return zero;
+
+	return temp[exponent]->_coeffic;
 }
 
 
@@ -46,7 +63,7 @@ TermList Poly::getTermList()const
 }
 
 std::vector <Rational>& Poly::getVectorOfList()const
-{	
+{
 	return m_polynom.getVector();
 }
 
@@ -79,11 +96,11 @@ Poly Poly::operator*=(const Poly& other)
 
 std::vector <Rational>& Poly::mergeVectorsOfLists(std::vector <Rational>& other_vec)const
 {
-	//vector size of the biggest one 
+	//vector size of the biggest one
 	int merged_vec_size =( (deg() > other_vec.size()) ? int(deg()) : int(other_vec.size()));
 	std::vector <Rational> merged_vec(merged_vec_size, Rational(0,1));
 	std::vector <Rational> current_vec(deg(), Rational(0,1));
-	
+
 	current_vec = getVectorOfList();
 
 	//loop on both - TODO: can change the if to one

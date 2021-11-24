@@ -4,6 +4,8 @@
 #include "TermList.h"
 #include <vector>
 
+const Rational zero(0, 1);
+
 class Poly
 {
 public:
@@ -13,6 +15,8 @@ public:
 	Poly(Rational r); // P(x) = r
 	Poly(int deg, Rational r); // P(x) = rx^deg
 	Poly(const std::vector <Rational>& poly_vec);
+
+	Rational operator[](int exponent);
 
 	int deg() const;
 	//destructors
