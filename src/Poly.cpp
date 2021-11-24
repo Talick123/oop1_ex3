@@ -47,7 +47,7 @@ int Poly::deg()const
 //-----------------------------------------------------
 
 //function receives exponent and returns coefficent of the term in the list with that exponent
-Rational Poly::operator[](int exponent)
+Rational Poly::operator[](int exponent)const
 {
 	if (exponent < 0 || exponent > deg()) //checks that exponent received is valid
 	{
@@ -188,10 +188,10 @@ bool operator!=(const Poly & left, const Poly & right)
 std::ostream& operator<<(std::ostream& ostream, const Poly& right)
 {
 	Term* head = right.getTermList().getTermListHead();
-	
-	if (!head || (head->_coeffic == Rational(0, 1) && head->_exponent == 0)) 
+
+	if (!head || (head->_coeffic == Rational(0, 1) && head->_exponent == 0))
 		return std::cout << "0" << std::endl;
-	
+
 	head->_coeffic < Rational(0, 1) ? "-" : "";
 	while (head)
 	{
@@ -203,6 +203,31 @@ std::ostream& operator<<(std::ostream& ostream, const Poly& right)
 
 		head ? (head->_coeffic < Rational(0, 1) ? std::cout << "-" : std::cout << "+") : std::cout << std::endl;
 	}
-	
+
 	return ostream;
 }
+
+//-----------------------------------------------------
+
+Rational Poly::operator()(Rational input)const
+{
+	Term* temp = m_polynom.getTermListHead();
+	Rational final, temp_input;
+	int numer, denomin;
+
+	while (temp != NULL)
+	{
+		if (!(temp->_coeffic.getNumer() == 0 && temp->_exponent == 0))
+		{
+			numer = (int)pow(input.getNumer(), temp->_exponent);
+			denomin = (int)pow(input.getDenomin(), temp->_exponent);
+
+			temp_input.set(numer, denomin);
+			temp_input *= temp->_coeffic;
+			final += temp_input;
+		}
+
+		temp = temp->_next;
+	}
+
+	return final;

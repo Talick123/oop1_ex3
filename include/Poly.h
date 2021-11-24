@@ -3,6 +3,7 @@
 #include "Rational.h"
 #include "TermList.h"
 #include <vector>
+#include <math.h>
 
 const Rational zero(0, 1);
 enum oprtr { MINUS, PLUS };
@@ -17,7 +18,8 @@ public:
 	Poly(int deg, Rational r); // P(x) = rx^deg
 	Poly(const std::vector <Rational>& poly_vec);
 
-	Rational operator[](int exponent);
+	Rational operator[](int exponent)const;
+	Rational operator()(Rational input)const;
 
 	int deg() const;
 	TermList getTermList()const;
