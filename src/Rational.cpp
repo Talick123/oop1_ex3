@@ -3,6 +3,9 @@
 
 //=============================================================================
 
+Rational::Rational() : m_numerator(DEFAULT_NUMER), m_denominator(DEFAULT_DENOMIN) {}
+
+
 //Constructor
 Rational::Rational(int numer, int denomin) : m_numerator(DEFAULT_NUMER), m_denominator(DEFAULT_DENOMIN) 
 {
@@ -218,3 +221,9 @@ int getNewDenomin(int old_denomin, int other_denomin)
 }
 
 
+void Rational::set(const int numer, const int denomin)
+{
+	m_numerator = numer;
+	m_denominator = denomin;
+	simplify();
+}

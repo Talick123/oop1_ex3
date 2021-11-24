@@ -15,9 +15,11 @@ class Rational
 {
 public:
 	//constructors
+	Rational(); //default constructor
 	Rational(int numer, int denomin);
 	Rational(const Rational& copy); //copy constructor
 
+	void set(const int numer, const int denomin);
 	int getNumer()const;
 	int getDenomin()const;
 

@@ -40,7 +40,7 @@ int Poly::deg()const
 }
 
 //function receives exponent and returns coefficent of the term in the list with that exponent
-Rational Poly::operator[](int exponent)
+Rational Poly::operator[](int exponent)const
 {
 	if (exponent < 0 || exponent > deg()) //checks that exponent received is valid
 	{
@@ -141,3 +141,28 @@ std::vector <Rational>& Poly::mergeVectorsOfLists(std::vector <Rational>& other_
 //		merged_vec[i] = current_vec[i];
 //	}
 //}
+
+
+Rational Poly::operator()(Rational input)const
+{
+	Term* temp = m_polynom.getTermListHead();
+	Rational final, temp_input;
+	int numer, denomin;
+
+	while (temp != NULL)
+	{
+		if (!(temp->_coeffic.getNumer() == 0 && temp->_exponent == 0))
+		{
+			numer = (int)pow(input.getNumer(), temp->_exponent);
+			denomin = (int)pow(input.getDenomin(), temp->_exponent);
+
+			temp_input.set(numer, denomin);
+			temp_input *= temp->_coeffic;
+			final += temp_input;
+		}
+
+		temp = temp->_next;
+	}
+
+	return final;
+}
