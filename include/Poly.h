@@ -15,17 +15,31 @@ public:
 	Poly(const std::vector <Rational>& poly_vec);
 
 	int deg() const;
-	//distructors
+	//destructors
 
+
+	//operators
+	Poly operator+=(const Poly& right);
+	Poly operator-=(const Poly& right);
+	Poly operator*=(const Poly& right);
 
 
 
 private:
 	TermList m_polynom;
 
+	TermList getTermList()const;
+	std::vector <Rational>& getVectorOfList()const;
+	std::vector <Rational>& mergeVectorsOfLists(std::vector <Rational>& other_vec)const;
+
 	void init(int deg, Rational r);
 };
 
+
+
+Poly operator+(const Poly& left, const Poly& right);
+Poly operator-(const Poly& left, const Poly& right);
+Poly operator*(const Poly& left, const Poly& right);
 
 
 // Required Operators: +, -, *

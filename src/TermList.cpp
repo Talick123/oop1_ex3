@@ -1,10 +1,7 @@
 #include "TermList.h"
 
 
-TermList::TermList() : m_termList(nullptr)
-{
-	
-}
+TermList::TermList() : m_termList(nullptr) { }
 
 
 TermList::TermList(const std::vector <Rational>& poly_vec) : m_termList(nullptr)
@@ -27,8 +24,6 @@ TermList::~TermList()
 	freeList();
 }
 
-
-
 Term* TermList::buildListTerm(const std::vector <Rational>& poly_vec)
 {
 	Term* head = NULL;
@@ -45,7 +40,6 @@ Term* TermList::buildListTerm(const std::vector <Rational>& poly_vec)
 		head = tmp;
 		curr++;
 	}
-
 	return head;
 }
 
@@ -78,4 +72,19 @@ void TermList::freeList()
 Term* TermList::getTermListHead()const
 {
 	return m_termList; //return head to term list
+}
+
+
+std::vector <Rational>& TermList::getVector()const
+{
+	int index = m_termList->_exponent; //also size of vec
+	std::vector <Rational> list_vec(index, Rational(0, 1));
+	Term* head = m_termList;
+	while (head)
+	{
+		if (head->_exponent != index) continue;
+		list_vec[index] = head->_coeffic;
+		index--;
+	}
+	return list_vec;
 }

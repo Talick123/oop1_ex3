@@ -22,6 +22,7 @@ public:
 
 	Term* getTermListHead()const;
 
+	std::vector <Rational>& getVector()const;
 
 private:
 	Term* m_termList;
