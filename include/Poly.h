@@ -4,6 +4,7 @@
 #include "TermList.h"
 #include <vector>
 #include <math.h>
+#include <iostream>
 
 const Rational zero(0, 1);
 enum oprtr { MINUS, PLUS };
