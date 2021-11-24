@@ -231,3 +231,4 @@ Rational Poly::operator()(Rational input)const
 	}
 
 	return final;
+}
