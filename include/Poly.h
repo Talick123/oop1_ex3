@@ -5,8 +5,9 @@
 #include <vector>
 #include <math.h>
 #include <iostream>
+#include "macros.h"
 
-const Rational zero(0, 1);
+const Rational zero(DEFAULT_NUMER, DEFAULT_DENOMIN);
 enum oprtr { MINUS, PLUS };
 
 class Poly

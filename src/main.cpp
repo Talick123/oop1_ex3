@@ -1,7 +1,7 @@
 #include "Poly.h"
 
 #include <string>
-
+/*
 Poly read_poly()
 {
     int deg, numer, denomin;
@@ -24,16 +24,18 @@ Poly read_poly()
         --deg;
     }
 
-    Poly A = Poly(poly_vec);
-    return A;
+   return Poly(poly_vec);
 }
-
+*/
 
 
 int main()
 {
-    Poly P1 = read_poly();
-    Poly P2 = read_poly();
+  auto c1 = std::vector<Rational>{ Rational(2,1), Rational(17,2) };
+  auto c2 = std::vector<Rational>{ Rational(3,1), Rational(2,2) };
+
+    auto P1 = Poly(c1);
+    auto P2 = Poly(c2);
 
     Rational tmp_r(3, 1);
 
@@ -52,14 +54,14 @@ int main()
     //testing operator==
     std::string isEqual = (P1 == P2) ? "equal" : "not equal";
     std::cout << "P1 and B are " << isEqual << '\n';
-    
+
     //testing operator[]
     int exponent;
     std::cout << "Enter the exponent of a term: ";
     std::cin >> exponent;
     std::cout << "\n";
     std::cout << "The cofficient of the term with an exponent " << exponent << " in P1 is : " << P1[exponent] << '\n';
-    
+
     //testing operator()
     int numer, denomin;
     std::cout << "Enter the numerator of the number you would like to insert into P1: ";
