@@ -37,61 +37,11 @@ Main Data Structures and their Jobs:
 	- see Design above
 
 Notable Algorithms:
-	- *multiplying???
+	- for multiplying polynomials we used the following algorithm: https://www.geeksforgeeks.org/multiply-two-polynomials-2/
 
 Known Bugs:
 	- there are no known bugs in the program
 
 Other General Notes:
 	- none
-
-
-
-==================================================================================================
-
-Classes:
-
- Poly
-	Description: represent polynom (over Q), responsible for
-	mathematical behaviours (not memory management)
-
-	Members:
-		- poli list
-
-	Member functions:
-		- deg (get degree of index)
-		- constructor
-		- deconstrucor
-		- copy constructor
-		- all operation functions
-
-
-Rational
-	Description: represent rational number by numerator denominator. Responsible for
-
-	Members:
-		- numerator
-		- denominator
-
-	Member functions:
-		- deg (get degree)
-		-
-
-TermList:
-	Description: list of Term structs, responsible for
-	memory and data structure management
-
-	Members:
-		struct Coeffic *
-
-	Member Functions:
-		-
-
-
-
-Structs:
-
-Term
-	- int degree
-	- Rational coeffic
-	- next Coeffic
+S

@@ -15,7 +15,7 @@ public:
 
 	void set(const int numer, const int denomin);
 
-	//access funcitions
+	//access functions
 	int getNumer()const;
 	int getDenomin()const;
 
@@ -30,7 +30,7 @@ public:
 	Rational &operator-();
 
 private:
-	void simplify();
+	void simplify(); //simplify fractions
 
 	int m_numerator;
 	int m_denominator;
@@ -47,4 +47,5 @@ bool operator<=(const Rational& left, const Rational& right);
 bool operator>=(const Rational& left, const Rational& right);
 std::ostream& operator<<(std::ostream&, const Rational& rtnl);
 
+//returns lcm
 int getNewDenomin(int old_denomin, int other_denomin);

@@ -1,38 +1,12 @@
 #include "Poly.h"
 
 #include <string>
-/*
-Poly read_poly()
-{
-    int deg, numer, denomin;
-    Rational coeffic;
-    std::cout << "Enter the degree of the Polygon: ";
-    std::cin >> deg;
-    int size = deg + 1;
-    std::vector<Rational> poly_vec(size);
-
-    while (deg >= 0)
-    {
-        std::cout << "Enter the numerator of the coefficient of the term with the exponent " << deg << ": ";
-        std::cin >> numer;
-        std::cout << "\n";
-        std::cout << "Enter the denominator of the coefficient of the term with the exponent " << deg << ": ";
-        std::cin >> denomin;
-        std::cout << "\n";
-        coeffic.set(numer, denomin);
-        poly_vec[deg] = coeffic;
-        --deg;
-    }
-
-   return Poly(poly_vec);
-}
-*/
 
 
 int main()
 {
-  auto c1 = std::vector<Rational>{ Rational(2,1), Rational(17,2) };
-  auto c2 = std::vector<Rational>{ Rational(3,1), Rational(2,2) };
+    auto c1 = std::vector<Rational>{ Rational(2,1), Rational(17,2) };
+    auto c2 = std::vector<Rational>{ Rational(3,1), Rational(2,2) };
 
     auto P1 = Poly(c1);
     auto P2 = Poly(c2);
@@ -91,13 +65,3 @@ int main()
 	return EXIT_SUCCESS;
 }
 
-/*
-Notes: DONT FORGET (both of us)
-
-- put consts where needed (including zero)
-- use default rational constructor where needed
-- add +1 to deg when creating vectors
-
-add here if necessary
-
-*/

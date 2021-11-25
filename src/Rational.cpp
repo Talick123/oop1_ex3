@@ -1,7 +1,7 @@
 #include "Rational.h"
 
 
-//=============================================================================	
+//-----------------------------------------------------	
 
 //Default Constructor
 Rational::Rational() : m_numerator(DEFAULT_NUMER), m_denominator(DEFAULT_DENOMIN) {}
@@ -28,9 +28,7 @@ Rational::Rational(const Rational& copy)
 	:m_numerator(copy.getNumer()), m_denominator(copy.getDenomin())
 {}
 
-
-
-//=============================================================================
+//-----------------------------------------------------
 
 //Function simplifies fraction
 void Rational::simplify()
@@ -53,24 +51,21 @@ void Rational::simplify()
 	}
 }
 
-//=============================================================================
-
+//-----------------------------------------------------
 
 int Rational::getNumer()const
 {
 	return m_numerator;
 }
 
-//=============================================================================
-
+//-----------------------------------------------------
 
 int Rational::getDenomin()const
 {
 	return m_denominator;
 }
 
-//=============================================================================
-
+//-----------------------------------------------------
 
 Rational &Rational::operator+=(const Rational& other)
 {
@@ -82,8 +77,7 @@ Rational &Rational::operator+=(const Rational& other)
 	return *this;
 }
 
-//=============================================================================
-
+//-----------------------------------------------------
 
 Rational &Rational::operator-=(const Rational& other)
 {
@@ -95,7 +89,7 @@ Rational &Rational::operator-=(const Rational& other)
 	return *this;
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 Rational &Rational::operator*=(const Rational& other)
 {
@@ -106,7 +100,7 @@ Rational &Rational::operator*=(const Rational& other)
 	return *this;
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 Rational &Rational::operator/=(const Rational& other)
 {
@@ -117,14 +111,14 @@ Rational &Rational::operator/=(const Rational& other)
 	return *this;
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 bool Rational::operator==(const Rational& other) const
 {
 	return (m_numerator == other.getNumer()) && (m_denominator == other.getDenomin());
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 bool Rational::operator<(const Rational& other) const
 {
@@ -133,19 +127,22 @@ bool Rational::operator<(const Rational& other) const
 	return (temp_numer <  (other.getNumer() * (new_denomin / other.getDenomin())));
 }
 
-//=============================================================================
+//-----------------------------------------------------
+
 Rational &Rational::operator+()
 {
 	return *this;
 }
-//=============================================================================
+
+//-----------------------------------------------------
 
 Rational& Rational::operator-()
 {
 	m_numerator *= -1;
 	return *this;
 }
-//=============================================================================
+
+//-----------------------------------------------------
 
 Rational operator+(const Rational& left, const Rational& right)
 {
@@ -153,7 +150,7 @@ Rational operator+(const Rational& left, const Rational& right)
 	return newRat += right;
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 Rational operator-(const Rational& left, const Rational& right)
 {
@@ -161,7 +158,7 @@ Rational operator-(const Rational& left, const Rational& right)
 	return newRat -= right;
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 Rational operator*(const Rational& left, const Rational& right)
 {
@@ -169,7 +166,7 @@ Rational operator*(const Rational& left, const Rational& right)
 	return newRat *= right;
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 Rational operator/(const Rational& left, const Rational& right)
 {
@@ -177,41 +174,42 @@ Rational operator/(const Rational& left, const Rational& right)
 	return newRat /= right;
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 bool operator!=(const Rational& left, const Rational& right)
 {
 	return !(left == right);
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 bool operator>(const Rational& left, const Rational& right)
 {
 	return !(left < right);
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 bool operator<=(const Rational& left, const Rational& right)
 {
 	return (left < right) || (left == right);
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 bool operator>=(const Rational& left, const Rational& right)
 {
 	return (left > right) || (left == right);
 }
 
-//=============================================================================
+//-----------------------------------------------------
+
 std::ostream& operator<<(std::ostream&, const Rational& rtnl)
 {
 	return std::cout << rtnl.getNumer() << '/' << rtnl.getDenomin();
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 int getNewDenomin(int old_denomin, int other_denomin)
 {
@@ -223,6 +221,7 @@ int getNewDenomin(int old_denomin, int other_denomin)
 	return new_denomin;
 }
 
+//-----------------------------------------------------
 
 void Rational::set(const int numer, const int denomin)
 {
