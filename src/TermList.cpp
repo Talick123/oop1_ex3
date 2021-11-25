@@ -1,8 +1,10 @@
 #include "TermList.h"
 
+//-----------------------------------------------------
 
 TermList::TermList() : m_termList(nullptr) { }
 
+//-----------------------------------------------------
 
 TermList::TermList(const std::vector <Rational>& poly_vec) : m_termList(nullptr)
 {
@@ -13,6 +15,8 @@ TermList::TermList(const std::vector <Rational>& poly_vec) : m_termList(nullptr)
 	m_termList = new_list;
 }
 
+//-----------------------------------------------------
+
 //copy constructor
 TermList::TermList(const TermList& tl)
 	:m_termList(nullptr)
@@ -20,11 +24,14 @@ TermList::TermList(const TermList& tl)
 	m_termList = tl.getTermListHead();
 }
 
-//
+//-----------------------------------------------------
+
 TermList::~TermList()
 {
 	freeList();
 }
+
+//-----------------------------------------------------
 
 Term* TermList::buildListTerm(const std::vector <Rational>& poly_vec)
 {
@@ -50,6 +57,8 @@ Term* TermList::buildListTerm(const std::vector <Rational>& poly_vec)
 	return head;
 }
 
+//-----------------------------------------------------
+
 Term* TermList::newTerm(Rational r, int exponent)
 {
 	Term* term = new (std::nothrow) Term({ 0,Rational(0,1),NULL });
@@ -65,6 +74,8 @@ Term* TermList::newTerm(Rational r, int exponent)
 	return term;
 }
 
+//-----------------------------------------------------
+
 void TermList::freeList()
 {
 	Term* tmp, * head = nullptr;;
@@ -76,10 +87,14 @@ void TermList::freeList()
 	}
 }
 
+//-----------------------------------------------------
+
 Term* TermList::getTermListHead()const
 {
 	return m_termList; //return head to term list
 }
+
+//-----------------------------------------------------
 
 std::vector <Rational> TermList::getVector()const
 {
@@ -98,6 +113,8 @@ std::vector <Rational> TermList::getVector()const
 	}
 	return list_vec;
 }
+
+//-----------------------------------------------------
 
 //function receives exponent and returns pointer to term in list with that exponent
 Term* TermList::operator[](int exponent) const
