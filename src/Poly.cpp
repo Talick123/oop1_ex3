@@ -4,7 +4,7 @@
 
 Poly::Poly() : m_polynom()
 {
-	Rational r = Rational(0, 1);
+	Rational r = zero;
 	init(0, r);
 }
 
@@ -24,11 +24,7 @@ Poly::Poly(int deg, Rational r) : m_polynom()
 
 //-----------------------------------------------------
 
-Poly::Poly(const std::vector <Rational>& poly_vec) :m_polynom(poly_vec)
-{
-	/*std::cout << poly_vec[0];
-	m_polynom = TermList(poly_vec);*/
-}
+Poly::Poly(const std::vector <Rational>& poly_vec) :m_polynom(poly_vec) {}
 
 
 //======================== functions =======================
@@ -36,7 +32,7 @@ Poly::Poly(const std::vector <Rational>& poly_vec) :m_polynom(poly_vec)
 void Poly::init(int deg, Rational r)
 {
 	int n = deg + 1;
-	std::vector<Rational> poly_vec(n, Rational(0, 1));
+	std::vector<Rational> poly_vec(n);
 	poly_vec[deg] = r;
 	m_polynom = TermList(poly_vec);
 }
@@ -183,7 +179,7 @@ void Poly::mergeVectorsOfLists(std::vector <Rational> other_vec, int oprtr, std:
 			merged_vec[i] = current_vec[i];
 			continue;
 		}
-		if (current_vec[i] == Rational(0, 1) && other_vec[i] == Rational(0, 1)) continue;
+		if (current_vec[i] == zero && other_vec[i] == zero) continue;
 
 		merged_vec[i] = (oprtr == PLUS) ? (current_vec[i] + other_vec[i]) : (current_vec[i] - other_vec[i]);
 	}
@@ -235,8 +231,6 @@ std::ostream& operator<<(std::ostream& ostream, const Poly& right)
 	auto head1 = right.getTermList();
 	auto head = head1.getTermListHead();
 
-	/*std::cout << head->_coeffic;
-	std::cout << " " << head->_exponent << "\n";*/
 	if (!head || ((head->_coeffic == zero) && (head->_exponent == 0)))
 		return std::cout << "0" << std::endl;
 
@@ -245,7 +239,7 @@ std::ostream& operator<<(std::ostream& ostream, const Poly& right)
 		std::cout << head->_coeffic;
 		head->_exponent != 0 ? std::cout << "*X^" << head->_exponent : std::cout << "";
 		head = head->_next;
-		head ? (head->_coeffic < Rational(0, 1) ? std::cout << "" : std::cout << "+") : std::cout << std::endl;
+		head ? (head->_coeffic < zero ? std::cout << "" : std::cout << "+") : std::cout << std::endl;
 	}
 	return ostream;
 }

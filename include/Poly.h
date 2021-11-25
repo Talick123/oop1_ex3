@@ -20,14 +20,13 @@ public:
 	Poly(int deg, Rational r); // P(x) = rx^deg
 	Poly(const std::vector <Rational>& poly_vec);
 
+	//access operators
 	Rational operator[](int exponent)const;
 	Rational operator()(Rational input)const;
 
+	//functions
 	int deg() const;
 	TermList getTermList()const;
-
-	//destructors
-
 
 	//operators
 	Poly operator+=(const Poly& other);
@@ -38,19 +37,19 @@ public:
 
 
 private:
+	//members
 	TermList m_polynom;
 
-	//TermList getTermList()const;
+	//private functions
 	std::vector <Rational> getVectorOfList()const;
 	void mergeVectorsOfLists(std::vector <Rational> other_vec, int oprtr, std::vector <Rational>& new_vec)const;
-	//std::vector <Rational> mergeVectorsOfLists(std::vector <Rational>& other_vec, int oprtr)const;
 	void multiply(const std::vector <Rational> other, std::vector <Rational>& new_vec);
 
 	void init(int deg, Rational r);
 };
 
 
-
+//global operators
 Poly operator+(const Poly& left, const Poly& right);
 Poly operator-(const Poly& left, const Poly& right);
 Poly operator*(const Poly& left, const Poly& right);
