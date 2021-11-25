@@ -1,14 +1,15 @@
 #include "Poly.h"
 
 #include <string>
-
+/*
 Poly read_poly()
 {
     int deg, numer, denomin;
     Rational coeffic;
     std::cout << "Enter the degree of the Polygon: ";
     std::cin >> deg;
-    std::vector<Rational> poly_vec(deg + 1);
+    int size = deg + 1;
+    std::vector<Rational> poly_vec(size);
 
     while (deg >= 0)
     {
@@ -23,17 +24,21 @@ Poly read_poly()
         --deg;
     }
 
-    Poly A = Poly(poly_vec);
-    return A;
+   return Poly(poly_vec);
 }
-
+*/
 
 
 int main()
 {
-    Poly P1 = read_poly();
-    Poly P2 = read_poly();
+    //Poly P1 = read_poly();
+    //Poly P2 = read_poly();
+    auto c1 = std::vector<Rational>{ Rational(2,1), Rational(17,2) };
+    auto c2 = std::vector<Rational>{ Rational(3,1), Rational(2,2) };
+    auto P1 = Poly(c1);
+    auto P2 = Poly(c2);
 
+    std::cout << P1.getTermList().getTermListHead()->_coeffic;
     //testing operator<<
     std::cout << "P1 is: " << P1 << '\n';
     std::cout << "P2 is: " << P2 << '\n';

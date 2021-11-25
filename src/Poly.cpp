@@ -23,9 +23,10 @@ Poly::Poly(int deg, Rational r) : m_polynom()
 
 //-----------------------------------------------------
 
-Poly::Poly(const std::vector <Rational>& poly_vec) :m_polynom()
+Poly::Poly(const std::vector <Rational>& poly_vec) :m_polynom(poly_vec)
 {
-	m_polynom = TermList(poly_vec);
+	/*std::cout << poly_vec[0];
+	m_polynom = TermList(poly_vec);*/
 }
 
 //-----------------------------------------------------
@@ -242,11 +243,14 @@ bool operator!=(const Poly & left, const Poly & right)
 
 std::ostream& operator<<(std::ostream& ostream, const Poly& right)
 {
-	Term* head = right.getTermList().getTermListHead();
+	auto head1 = right.getTermList();
+	auto head = head1.getTermListHead();
 
-	if (!head || (head->_coeffic == Rational(0, 1) && head->_exponent == 0))
+	/*std::cout << head->_coeffic;
+	std::cout << " " << head->_exponent << "\n";*/
+	if (!head || ((head->_coeffic == zero) && (head->_exponent == 0)))
 		return std::cout << "0" << std::endl;
-
+	// || ((head->_coeffic == zero) && (head->_exponent == 0))
 	//head->_coeffic < Rational(0, 1) ? "-" : "";
 	while (head)
 	{

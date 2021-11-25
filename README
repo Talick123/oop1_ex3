@@ -34,14 +34,16 @@ Files:
     - file containing struct Term that represents the exponential value and the coefficient (Rational) of a term in a polynomial (as well as pointer to next struct)
 
 Main Data Structures and their Jobs:
-  -
+	- see Design above
 
 Notable Algorithms:
+	- *multiplying???
 
 Known Bugs:
+	- there are no known bugs in the program
 
 Other General Notes:
-
+	- none
 
 
 

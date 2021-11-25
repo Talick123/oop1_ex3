@@ -1,9 +1,12 @@
 #include "Rational.h"
 
 
-//=============================================================================
+//=============================================================================	
 
+//Default Constructor
 Rational::Rational() : m_numerator(DEFAULT_NUMER), m_denominator(DEFAULT_DENOMIN) {}
+
+//-----------------------------------------------------
 
 
 //Constructor
@@ -18,7 +21,7 @@ Rational::Rational(int numer, int denomin) : m_numerator(DEFAULT_NUMER), m_denom
 	simplify();
 }
 
-//=============================================================================
+//-----------------------------------------------------
 
 //Copy Constructor
 Rational::Rational(const Rational& copy) 

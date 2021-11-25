@@ -3,13 +3,7 @@
 #include <numeric>
 #include <iosfwd>
 #include <iostream>
-
-
-const int DEFAULT_NUMER = 0;
-const int DEFAULT_DENOMIN = 1;
-
-// I M P O R T A N T ! 
-// do not divide by 0 
+#include "macros.h"
 
 class Rational
 {
@@ -20,9 +14,12 @@ public:
 	Rational(const Rational& copy); //copy constructor
 
 	void set(const int numer, const int denomin);
+
+	//access funcitions
 	int getNumer()const;
 	int getDenomin()const;
 
+	//Operators
 	Rational &operator+=(const Rational& other);
 	Rational &operator-=(const Rational& other);
 	Rational &operator*=(const Rational& other);
@@ -32,14 +29,10 @@ public:
 	Rational &operator+();
 	Rational &operator-();
 
-
-	//destructors
-
 private:
 	void simplify();
 
-
-	int m_numerator; //signed
+	int m_numerator;
 	int m_denominator;
 };
 
