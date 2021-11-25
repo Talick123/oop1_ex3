@@ -18,11 +18,11 @@ public:
 	TermList(const TermList& tl); //copy constructor ?
 
 	//destructors
-	~TermList(); //free list
+	//~TermList(); //free list
 
 	Term* getTermListHead()const;
 
-	std::vector <Rational>& getVector()const;
+	std::vector <Rational> getVector()const;
 
 	Term* operator[](int exponent)const;
 

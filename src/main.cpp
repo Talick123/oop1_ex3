@@ -1,12 +1,14 @@
 #include "Poly.h"
 
+#include <string>
+
 Poly read_poly()
 {
     int deg, numer, denomin;
     Rational coeffic;
     std::cout << "Enter the degree of the Polygon: ";
     std::cin >> deg;
-    std::vector<Rational> poly_vec(++deg);
+    std::vector<Rational> poly_vec(deg + 1);
 
     while (deg >= 0)
     {
@@ -21,7 +23,7 @@ Poly read_poly()
         --deg;
     }
 
-    Poly A(poly_vec);
+    Poly A = Poly(poly_vec);
     return A;
 }
 
@@ -37,14 +39,14 @@ int main()
     std::cout << "P2 is: " << P2 << '\n';
 
     //testing operators + and -
-    std::cout << "P1+P2 is: " << P1 + P2 << '\n';
+    std::cout << "P1+P2 is: " << P1+P2 << '\n';
     std::cout << "P1-P2 is: " << P1 - P2 << '\n';
 
     //testing operator*
-    std::cout << "P1*P2 is: " << P1 * P2 << '\n';
+    std::cout << "P1*P2 is: " << P1 * P2 << std::endl;
 
     //testing operator==
-    const auto isEqual = (P1 == P2) ? "equal" : "not equal";
+    std::string isEqual = (P1 == P2) ? "equal" : "not equal";
     std::cout << "P1 and B are " << isEqual << '\n';
     
     //testing operator[]
@@ -77,7 +79,7 @@ int main()
     std::cout << "A*B is: " << A * B << '\n';
     std::cout << "A/B is: " << A / B << '\n';
 
-    const auto isEqual = (A == B) ? "equal" : "not equal";
+    isEqual = (A == B) ? "equal" : "not equal";
     std::cout << "A and B are " << isEqual << '\n';
 
 	return EXIT_SUCCESS;

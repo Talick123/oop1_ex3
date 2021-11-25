@@ -40,8 +40,10 @@ private:
 	TermList m_polynom;
 
 	//TermList getTermList()const;
-	std::vector <Rational>& getVectorOfList()const;
-	std::vector <Rational>& mergeVectorsOfLists(std::vector <Rational>& other_vec, int oprtr)const;
+	std::vector <Rational> getVectorOfList()const;
+	void mergeVectorsOfLists(std::vector <Rational> other_vec, int oprtr, std::vector <Rational>& new_vec)const;
+	//std::vector <Rational> mergeVectorsOfLists(std::vector <Rational>& other_vec, int oprtr)const;
+	void multiply(const std::vector <Rational> other, std::vector <Rational>& new_vec);
 
 	void init(int deg, Rational r);
 };

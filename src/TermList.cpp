@@ -9,6 +9,7 @@ TermList::TermList(const std::vector <Rational>& poly_vec) : m_termList(nullptr)
 	struct Term *new_list = nullptr;
 
 	new_list = buildListTerm(poly_vec);
+
 	m_termList = new_list;
 }
 
@@ -18,21 +19,26 @@ TermList::TermList(const TermList& tl)
 	//m_termList = tl.m_termList; //get term list head ?
 	m_termList = tl.getTermListHead();
 }
-
-TermList::~TermList()
-{
-	freeList();
-}
+//
+//TermList::~TermList()
+//{
+//	freeList();
+//}
 
 Term* TermList::buildListTerm(const std::vector <Rational>& poly_vec)
 {
 	Term* head = NULL;
+
 	int size = int(poly_vec.size()),
 		curr = 0;
 
 	while (curr < size)
 	{
-		if (poly_vec[curr].getDenomin() == 1 && poly_vec[curr].getNumer() == 0) continue;
+		if (poly_vec[curr].getDenomin() == 1 && poly_vec[curr].getNumer() == 0)
+		{
+			curr++;
+			continue;
+		}
 
 		Term* tmp = newTerm(poly_vec[curr], curr );
 
@@ -45,7 +51,7 @@ Term* TermList::buildListTerm(const std::vector <Rational>& poly_vec)
 
 Term* TermList::newTerm(Rational r, int exponent)
 {
-	Term* term = new (std::nothrow) Term({ 0,Rational(0,1),NULL });
+	Term* term = new (std::nothrow) Term{ 0,Rational(0,1),NULL };
 	if (!term)
 	{
 		std::cerr << "Error in allocation" << std::endl;
@@ -61,10 +67,10 @@ Term* TermList::newTerm(Rational r, int exponent)
 void TermList::freeList()
 {
 	Term *tmp, *head = m_termList;
-	while (head != NULL)
+	while (head)
 	{
 		tmp = head->_next;
-		delete head;
+		//delete head;
 		head = tmp;
 	}
 }
@@ -74,15 +80,19 @@ Term* TermList::getTermListHead()const
 	return m_termList; //return head to term list
 }
 
-std::vector <Rational>& TermList::getVector()const
+std::vector <Rational> TermList::getVector()const
 {
 	int index = m_termList->_exponent; //also size of vec
-	std::vector <Rational> list_vec(index, Rational(0, 1));
+	std::vector <Rational> list_vec(index + 1, Rational(0, 1));
 	Term* head = m_termList;
 	while (head)
 	{
-		if (head->_exponent != index) continue;
-		list_vec[index] = head->_coeffic;
+		if (head->_exponent == index)
+		{
+
+			list_vec[index] = head->_coeffic;
+			head = head->_next;
+		}
 		index--;
 	}
 	return list_vec;
