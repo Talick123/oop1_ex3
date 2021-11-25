@@ -5,8 +5,8 @@
 
 int main()
 {
-    auto c1 = std::vector<Rational>{ Rational(2,1), Rational(17,2) };
-    auto c2 = std::vector<Rational>{ Rational(3,1), Rational(2,2) };
+    auto c1 = std::vector<Rational>{ Rational(2,1),  Rational(1,2), zero , zero ,Rational(7,3), Rational(17,26), Rational(17,234) };
+    auto c2 = std::vector<Rational>{ Rational(3,1), zero ,Rational(2,2) };
 
     auto P1 = Poly(c1);
     auto P2 = Poly(c2);
