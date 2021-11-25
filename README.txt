@@ -1,25 +1,25 @@
-OOP ex3 - Implementation of Polynomials
+OOP ex3 - Implementation of Rational numbers and Polynomials
 
 Written by: Tali Kalev (טלי כלב), ID:208629691
             Noga Levy (נוגה לוי), ID:315260927
 
 General Description of the Assignment:
   In this assignment, we were requested to implement classes and functions that
-  allow representation and manipulation of polynomials.
+  allow representation and manipulation of polynomials and Rationals numbers.
 
 Design:
   Classes: Poly, List, Rational
-    Rational
+    Rational:
     - deals with the construction and representation of rational numbers in Polynomials (the coefficient)
     - contains functions used for mathematical operations
-   TermList
-   - deals with the memory allocation for a list of structures
+   TermList:
+   - deals with the memory allocation for a list of 'Term' structures
    - contains functions used for memory allocation and release
-   Poly
+   Poly:
    - deals with the mathematical operations of polynomials represented as a list of structures
 
  Structures: Term
-   Term
+   Term:
    - structure containing an exponential value, variable of type Rational and pointer to next structure
 
 
@@ -44,4 +44,3 @@ Known Bugs:
 
 Other General Notes:
 	- none
-S
