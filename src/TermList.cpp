@@ -16,10 +16,9 @@ TermList::TermList(const std::vector <Rational>& poly_vec) : m_termList(nullptr)
 //copy constructor
 TermList::TermList(const TermList& tl)
 {
-	//m_termList = tl.m_termList; //get term list head ?
 	m_termList = tl.getTermListHead();
 }
-//
+
 //TermList::~TermList()
 //{
 //	freeList();
@@ -51,7 +50,7 @@ Term* TermList::buildListTerm(const std::vector <Rational>& poly_vec)
 
 Term* TermList::newTerm(Rational r, int exponent)
 {
-	Term* term = new (std::nothrow) Term{ 0,Rational(0,1),NULL };
+	Term* term = new (std::nothrow) Term({ 0,Rational(0,1),NULL });
 	if (!term)
 	{
 		std::cerr << "Error in allocation" << std::endl;
@@ -83,13 +82,13 @@ Term* TermList::getTermListHead()const
 std::vector <Rational> TermList::getVector()const
 {
 	int index = m_termList->_exponent; //also size of vec
-	std::vector <Rational> list_vec(index + 1, Rational(0, 1));
+	int size = index + 1;
+	std::vector <Rational> list_vec(size);
 	Term* head = m_termList;
 	while (head)
 	{
 		if (head->_exponent == index)
 		{
-
 			list_vec[index] = head->_coeffic;
 			head = head->_next;
 		}

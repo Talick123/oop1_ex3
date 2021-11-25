@@ -8,7 +8,8 @@ Poly read_poly()
     Rational coeffic;
     std::cout << "Enter the degree of the Polygon: ";
     std::cin >> deg;
-    std::vector<Rational> poly_vec(deg + 1);
+    int size = deg + 1;
+    std::vector<Rational> poly_vec(size);
 
     while (deg >= 0)
     {
@@ -34,6 +35,8 @@ int main()
     Poly P1 = read_poly();
     Poly P2 = read_poly();
 
+    Rational tmp_r(3, 1);
+
     //testing operator<<
     std::cout << "P1 is: " << P1 << '\n';
     std::cout << "P2 is: " << P2 << '\n';
@@ -44,6 +47,7 @@ int main()
 
     //testing operator*
     std::cout << "P1*P2 is: " << P1 * P2 << std::endl;
+    std::cout << "s*P2 is: " << tmp_r * P2 << std::endl;
 
     //testing operator==
     std::string isEqual = (P1 == P2) ? "equal" : "not equal";

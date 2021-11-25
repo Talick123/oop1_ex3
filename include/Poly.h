@@ -53,6 +53,7 @@ private:
 Poly operator+(const Poly& left, const Poly& right);
 Poly operator-(const Poly& left, const Poly& right);
 Poly operator*(const Poly& left, const Poly& right);
+Poly operator*(const Rational& left, const Poly& right);
 bool operator!=(const Poly& left, const Poly& right);
 std::ostream& operator<<(std::ostream&, const Poly& poly);
 
